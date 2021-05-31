@@ -1,0 +1,48 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+# 数据源配置
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@192.168.66.128:1521:hghis
+    username: wsbauser
+    password: wsbauser
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 5
+      connection-test-query: SELECT 1 FROM DUAL
+      maximum-pool-size: 20
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: Mybatisplushikaricp
+      max-lifetime: 60000
+      connection-timeout: 30000
+
+  thymeleaf:
+    cache: false
+
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+      additional-paths: src/main/resources/templates,src/main/java
+
+# mybatis-plus
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*.xml
+  type-aliases-package: com.project.mybatis.plus.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    cache-enabled: true
+
+
+logging:
+  level:
+    org:
+      springframework:
+        boot:
+          autoconfigure: ERROR

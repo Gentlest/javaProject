@@ -1,0 +1,8 @@
+application:
+  name: dev环境 @artifactId@
+  version: dev环境 @version@
+  fileName: dev环境 @build.finalName@
+
+developer:
+  name: dev环境 Gentlest
+  qq: dev环境 2453315408@qq.com

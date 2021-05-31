@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Dashboard</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{css/dashboard.css}" rel="stylesheet">
+    <!--layui -->
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet">
+
+</head>
+
+<body>
+<div th:replace="~{common/header::header(active='index.html')}"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="~{common/sidebar::sidebar}"></div>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h2>合同查询</h2>
+            <div class="layui-form">
+                <div class="layui-inline">
+                    <label class="layui-form-item" for="beginDate">开始日期</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" id="beginDate" name="beginDate" placeholder="yyyy-MM-dd">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-item" for="endDate">结束日期</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" id="endDate" name="endDate" placeholder="yyyy-MM-dd">
+                    </div>
+                </div>
+                <button class="layui-btn layui-btn-primary" lay-submit="" lay-filter="btn-check" id="btn-check">查询
+                </button>
+            </div>
+            <table class="layui-hide" id="grid" lay-filter="grid"></table>
+        </main>
+    </div>
+</div>
+
+<!-- Bootstrap-->
+<script type="text/javascript" th:src="@{js/jquery.js}"></script>
+<script type="text/javascript" th:src="@{js/popper.min.js}"></script>
+<script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
+<!--layui-->
+<script type="text/javascript" th:src="@{layui/layui.js}"></script>
+
+<script th:inline="none">
+    layui.use(['laydate', 'form', 'table'], function () {
+        let laydate = layui.laydate,
+            form = layui.form,
+            table = layui.table;
+
+        // 日期选择
+        laydate.render({
+            elem: '#beginDate'
+        });
+        laydate.render({
+            elem: '#endDate'
+        });
+        // layui 异步加载数据
+        form.on('submit(btn-check)', function (data) {
+            let formDate = data.field;
+            let beginDate = formDate.beginDate,
+                endDate = formDate.endDate;
+
+            table.render({
+                elem: '#grid',
+                url: '/getContract',
+                method: 'post',
+                where: {beginDate: beginDate, endDate: endDate},
+                page: false,
+                limit: 200,
+                cols: [[
+                    {type: 'checkbox', fixed: 'left'}
+                    , {field: 'contractNum', title: '合同编号', width: 100, sort: true, fixed: 'left'}
+                    , {field: 'contractType', title: '合同类型', width: 100}
+                    , {field: 'companyName', title: '公司名称', width: 100, sort: true}
+                    , {field: 'projectName', title: '项目名称', width: 100, sort: true}
+                ]]
+            })
+            return false;
+        })
+    });
+    // jQuery.ajax异步加载数据
+    // $("#btn-check").click(function () {
+    //     $.ajax({
+    //         url: '/getContract',
+    //         type: "POST",
+    //         data: {"beginDate": $('#beginDate').val(), "endDate": $('#endDate').val()},
+    //         success: function (data) {
+    //             console.log(data);
+    //         }
+    //     })
+    // });
+</script>
+
+</body>
+
+</html>

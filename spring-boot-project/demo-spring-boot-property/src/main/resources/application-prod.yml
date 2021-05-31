@@ -1,0 +1,7 @@
+application:
+  name: prod环境 @artifactId@
+  version:  prod环境 @version@
+
+developer:
+  name: prod环境 Gentlest
+  qq: prod环境 2453315408@qq.com

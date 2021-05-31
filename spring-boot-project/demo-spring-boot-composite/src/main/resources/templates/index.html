@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>首页</title>
+</head>
+<body>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+</body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="page-header">
+                <h1>
+                    <small>合同列表</small>
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 column">
+                <form th:action="@{/contract/getInfo}" method="post" style="float: right"
+                      class="form-inline">
+                    <label>
+                        <input type="text" name="contractNum" id="contractNum" class="form-control"
+                               placeholder="请输入合同编号">
+                    </label>
+                    <input type="submit" class="btn btn-sm" value="查询">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <table class="table table-hover table-bordered">
+                <thead>
+                <tr>
+                    <th>合同编号</th>
+                    <th>合同面积</th>
+                    <th>买受人</th>
+                    <th>证件号码</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="contract:${contracts}">
+                    <td th:text="${contract.contractNum}"></td>
+                    <td th:text="${contract.contractArea}"></td>
+                    <td th:text="${contract.buyerName}"></td>
+                    <td th:text="${contract.buyerNum}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</html>
