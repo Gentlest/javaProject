@@ -39,7 +39,7 @@ public class PageUtil<T> {
     /**
      * 设置当前页和每页显示的数量
      *
-     * @param currentPage 当前页
+     * @param currPage 当前页
      * @param pageSize    每页条数
      * @param totalRecord 总记录数
      */

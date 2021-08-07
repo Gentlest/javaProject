@@ -18,6 +18,7 @@
         <module>demo-spring-boot-jpa</module>
         <module>demo-spring-boot-jpa-project</module>
         <module>demo-spring-boot-mybatis</module>
+        <module>demo-spring-boot-mybatis-plus</module>
         <module>demo-spring-boot-dynamic-datasource</module>
         <module>demo-spring-boot-composite</module>
     </modules>

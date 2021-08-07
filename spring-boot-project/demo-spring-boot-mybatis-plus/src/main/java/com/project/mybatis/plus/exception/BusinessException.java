@@ -1,6 +1,5 @@
 package com.project.mybatis.plus.exception;
 
-import com.project.mybatis.plus.constant.ResultCode;
 import lombok.Getter;
 
 /**

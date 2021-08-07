@@ -5,12 +5,24 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>demo-spring-boot-mybatis-plus</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
     <parent>
         <artifactId>spring-boot-project</artifactId>
         <groupId>com.project</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
+
     <name>demo-spring-boot-mybatis-plus</name>
+    <description>Spring Boot集成Mybatis-Plus</description>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <mybatis-plus.version>3.2.0</mybatis-plus.version>
+    </properties>
+
+
     <dependencies>
         <!--SpringBoot组件-->
         <dependency>
@@ -49,6 +61,7 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatis-plus.version}</version>
         </dependency>
         <!--Oracle驱动-->
         <dependency>
@@ -79,27 +92,32 @@
         </dependency>
     </dependencies>
 
-    <description>mybatis-plus练习</description>
-
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
 
     <build>
-        <finalName>${project.artifactId}</finalName>
+        <finalName>${project.name}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <fork>true</fork>
-                </configuration>
             </plugin>
         </plugins>
         <resources>
             <resource>
-                <directory>/src/main/resources</directory>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.yml</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.yml</include>
+                </includes>
                 <filtering>true</filtering>
             </resource>
         </resources>
