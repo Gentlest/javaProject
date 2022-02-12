@@ -1,5 +1,6 @@
 package com.project.mybatis.plus.exception;
 
+import com.project.mybatis.plus.common.ResultVo;
 import lombok.Getter;
 
 /**
@@ -10,6 +11,8 @@ import lombok.Getter;
  */
 @Getter
 public class BusinessException extends RuntimeException {
+
+    private static final long serialVersionUID = 6615311256175426292L;
     /**
      * 错误状态码
      */
@@ -19,7 +22,7 @@ public class BusinessException extends RuntimeException {
      */
     private final String errorMsg;
 
-    public BusinessException(ResultCode resultCode) {
+    public BusinessException(ResultVo resultCode) {
         super(resultCode.getMsg());
         this.errorCode = resultCode.getCode();
         this.errorMsg = resultCode.getMsg();
