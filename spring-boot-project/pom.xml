@@ -11,7 +11,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>demo-spring-boot-helloworld</module>
+        <module>demo-spring-boot-helloWorld</module>
         <module>demo-spring-boot-property</module>
         <module>demo-spring-boot-log-aop</module>
         <module>demo-spring-boot-project-exception-handler</module>
